@@ -68,7 +68,15 @@ void gm() {
                     if (whg == KEY_UP ) pcrot(cabinet);
                     if (whg == KEY_LEFT) pcmov(-1, cabinet);
                     if (whg == KEY_RIGHT) pcmov(1, cabinet);
-                    while(whg == 83 || whg == 115){pcdrp(cabinet);}
+
+                    if(whg == 115 || whg == 83){
+                            for (int i = 0; i<20; i++){
+                            if(chkloc())break;
+                            pcdrp(cabinet);
+                     }
+                     frz=1;
+                    }
+                    continue;
                     
                 }
             }
@@ -195,11 +203,7 @@ void gm() {
 		    mvwprintw(ms,0,0,"SESSION %03d",sessions);
                     if (nxt != lnxt) {
 
-                        /*     for (int r = 0; r < 4; r++) {
-                                 mvwprintw(sw,r+2,4,"        ");
-                               mvwprintw(sw,r+3,4,"        ");
-                               //mvwprintw(sw,vd+7+r,pd+35,"              ");
-                             }*/
+                        
 
                         werase(sw);
 
