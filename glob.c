@@ -1,0 +1,57 @@
+#include "decl.h"
+
+
+WINDOW *gw;
+WINDOW *sw;
+WINDOW *pw;
+WINDOW *lw;
+WINDOW *al;
+WINDOW *ms;
+int sessions=1;
+struct pcs T = {{{0,3},{0,4},{0,5},{1,4}},0.0f,4.0f};
+struct pcs S = {{{1,3},{1,4},{0,4},{0,5}},1.0f, 4.0f};
+struct pcs Z = {{{0,3},{0,4},{1,4},{1,5}},1.0f,4.0f};
+struct pcs J = {{{1,4},{0,4},{1,5},{1,6}},1.0f,5.0f};
+struct pcs L = {{{1,3},{1,4},{1,5},{0,5}},1.0f,4.0f};
+struct pcs O = {{{0,4},{0,5},{1,4},{1,5}},0.5f, 4.5f};
+struct pcs I = {{{0,3},{0,4},{0,5},{0,6}},0.0f, 4.5f};
+struct pcs tot[7];
+struct pcs cupc;
+int bfn=0;
+int cur;
+int nxt;
+struct timespec bef;
+int rst=0;
+int ren[20][10];
+unsigned int drt=0;
+unsigned int o =0;
+unsigned int d=0;
+unsigned int t=0;
+unsigned int tt=0;
+unsigned int lcn=0;
+int vd;
+int pd;
+int whg;
+int rlk;
+int lhg;
+int lose = 0;
+int cabinet[20][10] = {0};
+int clrd = 0;
+int clrr[4];
+unsigned int his=0;
+int clr = 0;
+int cnt = 0;
+int paused = 0;
+int iflsh=0;
+int tflsh=0;
+int flshr[4];
+int flshc= 0;
+char lnxt = -1;
+int p =0;
+unsigned int s = 0;
+int sd=0;
+int frz=0;
+unsigned int sed;
+const int gWide = 26;
+const int gTall = 22;
+
