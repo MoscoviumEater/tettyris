@@ -99,17 +99,19 @@ void tick(int ren[20][10], int cabinet[20][10]) {
 
 
         cur = nxt;
-        if (!iflsh)cupc = tot[cur];
-        sed ^= (sed << 3);
-        sed += 1;
-        sed &= 0xffff;
-        int tp = sed % 7;
-         while (tp == nxt) {
-             sed ^= (sed << 3);
-             sed += 1;
-             sed &= 0xffff;
-             tp = sed % 7;
-         }
+        if (!iflsh){
+            cupc = tot[cur];
+            sed ^= (sed << 3);
+            sed += 1;
+            sed &= 0xffff;
+            tp = sed % 7;
+             while (tp == nxt) {
+                 sed ^= (sed << 3);
+                 sed += 1;
+                 sed &= 0xffff;
+                 tp = sed % 7;
+             }
+        }
         if (cur==6) {
             drt=0;
         }else {

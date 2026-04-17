@@ -1,7 +1,7 @@
 
 
-#ifndef TTYGAME
-#define TTYGAME
+#ifndef TTYRS
+#define TTYRS
 #include <ctype.h>
 #include <time.h>
 #include <stdio.h>
@@ -15,7 +15,7 @@
 
 #else
     #include <unistd.h>
-   // #include <termios.h>
+    
    #include <ncurses.h>
     #include <sys/ioctl.h>
 #include <stdio.h>
@@ -26,9 +26,6 @@
 #define gmv(r,c) wmove(gw,r,c)
  #define gmpt(s) wprintw(gw,s)
     #define gflsh() wrefresh(gw)
-#define mg "TTYS"
-#define mgs 4
-
 extern int ren[20][10];
 extern struct timespec bef;
 static int _ngt ;
@@ -38,6 +35,7 @@ extern struct pcs T;
 extern struct pcs S;
 extern struct pcs Z;
 extern int rst;
+extern int lns;
 extern struct pcs J;
 extern struct pcs L;
 extern struct pcs O;
@@ -46,6 +44,7 @@ extern struct pcs tot[7];
 extern struct pcs cupc;
 extern int bfn;
 extern int cur;
+extern int tp;
 extern int nxt;
 extern unsigned int drt;
 extern unsigned int o;

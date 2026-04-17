@@ -7,24 +7,23 @@
  *sfx
  */
 /* ISSUES RN
- * none
+ * didn't find any yet
  *
  */
 /* stuff i did this revision
  *
  * fixed rng by making it like nes tetris
  * added frames for score and next
- * added high score even though restart aint done
+ * added high score
  * added pdcurses to source
  * fixed compat
+ * implementing lvls
 */
 
 #include "decl.h"
-#include <bits/types/cookie_io_functions_t.h>
+#include <ncurses.h>
+#include <stddef.h>
 #include <stdint.h>
-#include <stdio.h>
-#include <string.h>
-
 
 
 
@@ -38,7 +37,6 @@ void gm() {
 
         while (1) {
 
-      //  if (lose) rst=1;
         curs_set(0);
 
 
@@ -62,7 +60,7 @@ void gm() {
                     paused = !paused;
                     continue;
                 }
-                if (paused != 1) {
+                if (paused != 1 && !iflsh) {
                     
                     if (whg == KEY_DOWN ) pcdrp(cabinet);
                     if (whg == KEY_UP ) pcrot(cabinet);
@@ -94,7 +92,7 @@ void gm() {
                     paused = !paused;
                     flushinp();
                     continue;
-                }else if (lhg==91&&paused !=1){
+                }else if (lhg==91&&paused !=1&&!iflsh){
 
                     lhg= wgetch(gw);
                     if (lhg == 66 ) pcdrp(cabinet);
@@ -183,7 +181,7 @@ void gm() {
                         mvwprintw(lw,r,0,"<!");
                     }
                     mvwprintw(lw,1,4,"LINES");
-                    mvwprintw(lw,2,6,"%d",lcn);
+                    mvwprintw(lw,2,6,"%08d",lcn);
                     mvwprintw(lw,3,2,"===============");
                     mvwprintw(lw,4,4, "ONELINER");
                     mvwprintw(lw,5,6, "%08d",o);
@@ -217,6 +215,15 @@ void gm() {
 
                 else if (paused) {
                     mvwprintw(gw,11,8," PAUSED ");
+                    for (int r=0; r<20; r++){
+                        for (int c=0; c<10;c++){
+                            mvwprintw(al,r,(c*2),". ");
+                        }
+                    
+                    }
+                    wnoutrefresh(al);
+                    
+                    
                 }
 
 
@@ -227,7 +234,7 @@ void gm() {
             wrefresh(lw);
             wrefresh(pw);
 	          wrefresh(ms);
-         // wrefresh(al);
+        //  wrefresh(al);
 
 
             if (lose){rst=1;return;}
