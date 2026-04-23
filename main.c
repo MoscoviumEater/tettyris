@@ -21,7 +21,6 @@
 */
 
 #include "decl.h"
-#include <ncurses.h>
 #include <stddef.h>
 #include <stdint.h>
 
