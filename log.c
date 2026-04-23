@@ -1,5 +1,4 @@
 #include "decl.h"
-#include <ncurses.h>
 
 int chkloc() {
     int locked=0;
