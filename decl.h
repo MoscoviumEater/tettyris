@@ -11,7 +11,7 @@
 
 
 #ifdef _WIN32
-#include "pdcmod/curses.h"
+#include "deps/pdcmod/curses.h"
 
 #else
     #include <unistd.h>
