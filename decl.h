@@ -99,10 +99,7 @@ void lincl();
 int linsc(int cabinet[20][10], int op[4]);
 void flstat();
 void calc();
-extern uint8_t thmst[];
-extern uint8_t thmnd[];
-extern uint8_t sfst[];
-extern uint8_t sfnd[];
+
 
 
 #endif
