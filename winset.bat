@@ -26,7 +26,6 @@ if /i "%PROCESSOR_ARCHITECTURE%"=="AMD64" (
     "%WLD32%\bin\gcc.exe"   main.c glob.c log.c pcs.c ren.c %PDD%\wincon\*.c %PDD%\pdcurses\*.c -I"%PDD%" -I"%PDD%"\wincon -lwinmm -lm -static -static-libgcc -o tettyris.exe -lwinmm
 )
 
-::if exist "%DPS%\pdcurses.zip" del "%DPS%\pdcurses.zip"
-::if exist "%DPS%\winlib.zip" del "%DPS%\winlib.zip"
+if exist "%DPS%" del "%DPS%"
 endlocal
 pause
