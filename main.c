@@ -1,23 +1,16 @@
 
-//tettyris beta 0.99 (rev 19)
+//tettyris 1.0 (rev 0)
 //polished some bits from 0.8 :) like rotation and replaced old int system for block data to struct
 
 /*(TODO)
- *LATER Seperating code because its messy rn due to all the debugging after code is stable
- *sfx
+ *remove pivot math and update with states instead because ewwwww
  */
 /* ISSUES RN
- * didn't find any yet
- *
+ * didn't find any yet you can contribute ig
  */
 /* stuff i did this revision
- *
- * fixed rng by making it like nes tetris
- * added frames for score and next
- * added high score
- * added pdcurses to source
- * fixed compat
- * implementing lvls
+ * made it fetch pdcursesmod and compiler from net instead of bloating my repo with deps
+ * starting to implement lvl logic bones
 */
 
 #include "decl.h"
