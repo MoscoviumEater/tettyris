@@ -154,14 +154,12 @@ void flstat() {
     }
 void lv(){
  unsigned int eff = (lvl==0xff)?0:lvl;
-    switch(eff){
-        case 0xff: gtm=gtmt[0];break;
-        default:
-         if (lvl>=29) gtm=gtmt[14];
-         else if (lvl>=19)gtm=gtmt[13];
-         else if (lvl>=16)gtm=gtmt[12];
-         else if (lvl>=13)gtm=gtmt[11];
-         else if (lvl>=10)gtm=gtmt[10];
-         else gtm=gtmt[lvl];
-    }
+
+         if (eff>=29) gtm=gtmt[14];
+         else if (eff>=19)gtm=gtmt[13];
+         else if (eff>=16)gtm=gtmt[12];
+         else if (eff>=13)gtm=gtmt[11];
+         else if (eff>=10)gtm=gtmt[10];
+         else gtm=gtmt[eff];
+    
 }
