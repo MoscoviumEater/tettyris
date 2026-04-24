@@ -3,7 +3,7 @@ SRCS = main.c glob.c log.c pcs.c ren.c
 LDFLAGS = -lncurses -ltinfo -lm 
 CFLAGS ?= -O1 -march=native
 PREFIX ?= /usr
-DIR ?= bin
+DIR ?= $(PREFIX)/bin
 
 
 tettyris: $(SRCS)
