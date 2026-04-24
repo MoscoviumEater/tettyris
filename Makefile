@@ -3,7 +3,7 @@ SRCS = main.c glob.c log.c pcs.c ren.c
 LDFLAGS = -lncurses -ltinfo -lm 
 CFLAGS ?= -O1 -march=native
 PREFIX ?= /usr/local
-DIR ?= $(PREFIX)/bin
+BINDIR ?= $(PREFIX)/bin
 
 
 tettyris: $(SRCS)
@@ -12,7 +12,7 @@ tettyris: $(SRCS)
 clean:
 	rm -f tettyris
 install:
-	mkdir -p $(DESTDIR)$(DIR)
-	cp tettyris $(DESTDIR)$(DIR)/tettyris
+	install -d $(DESTDIR)$(DIR)
+	install -m755 tettyris $(DESTDIR)$(DIR)/tettyris
 uninstall:
 	rm -f $(DIR)/tettyris
