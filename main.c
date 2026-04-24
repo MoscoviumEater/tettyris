@@ -14,7 +14,7 @@ void gm() {
         curs_set(0);
 
         cur=6;
-        lvl=(lcn/10)+1;
+        lvl=(lcn/10);
         lv();
         flstat();
         
