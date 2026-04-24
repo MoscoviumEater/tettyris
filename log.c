@@ -51,7 +51,7 @@ void lincl() {
             }
             for (int sc = 0; sc < 10; sc++) cabinet[0][sc] = 0;
            // r--;
-       }
+       
 
     }
 
