@@ -27,7 +27,7 @@ void calc() {
 void lincl() {
 
 
-    for (int r = 0; r < 20; r++) {
+    /*for (int r = 0; r < 20; r++) {
             cnt=0;
 
         for (int c = 0; c < 10; c++) {
@@ -38,7 +38,7 @@ void lincl() {
         if (cnt==10) {
             clr = 1;
             clrr[clrd] = r;
-            clrd++;
+            clrd++;*/
 
 
             for (int sr = r; sr > 0; sr--) {
@@ -50,7 +50,7 @@ void lincl() {
             }
             for (int sc = 0; sc < 10; sc++) cabinet[0][sc] = 0;
             r--;
-        }
+       }
 
     }
 
