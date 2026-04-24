@@ -14,7 +14,7 @@
 */
 
 #include "decl.h"
-#include <ncurses.h>
+
 
 
 
