@@ -14,10 +14,7 @@
 */
 
 #include "decl.h"
-#include <stddef.h>
-#include <stdint.h>
-
-
+#include <ncurses.h>
 
 
 
@@ -31,11 +28,11 @@ void gm() {
 
         curs_set(0);
 
-
-
-
+        cur=6;
+        lvl=(lcn/10)+1;
+        lv();
         flstat();
-
+        
         for (int i = 0; i < 10; i++) {
             napms(5);
 
@@ -110,7 +107,7 @@ void gm() {
             long tm = (rn.tv_sec - bef.tv_sec) * 1000 +
                       (rn.tv_nsec - bef.tv_nsec) / 1000000;
             if (paused != 1) {
-                if (tm >= 800 && !iflsh) {
+                if (tm >= gtm && !iflsh) {
 
                     tick(ren, cabinet);
                     bef = rn;
@@ -159,38 +156,45 @@ void gm() {
                     mvwprintw(pw,2,0, "<!");
                     mvwprintw(pw,3,0, "<!");
                     mvwprintw(pw,4,0, "<!");
+                    mvwprintw(pw,5,0, "<!");
+                    mvwprintw(pw,6,0, "<!");
                     mvwprintw(pw,1,14, "!>");
                     mvwprintw(pw,2,14, "!>");
                     mvwprintw(pw,3,14, "!>");
                     mvwprintw(pw,4,14, "!>");
-                    mvwprintw(pw,1,3, "SCORE");
-                    mvwprintw(pw,2,5, "%08d",s);
-                    mvwprintw(pw,3,3, "BEST");
-                    mvwprintw(pw,4,5, "%08d",his);
+                    mvwprintw(pw,5,14, "!>");
+                    mvwprintw(pw,6,14, "!>");
+                    mvwprintw(pw,1,3, "SESSION");
+                    mvwprintw(pw,2,5, "%08d",sessions);
+                    mvwprintw(pw,3,3, "SCORE");
+                    mvwprintw(pw,4,5, "%08d",s);
+                    mvwprintw(pw,5,3,"BEST");
+                    mvwprintw(pw,6,5,"%08d",his);
 
                     mvwprintw(lw,0,0, "  ===============  ");
-                    for (int r=0;r<14;r++) {
+                    for (int r=0;r<16;r++) {
                         mvwprintw(lw,r,0,"<!");
                     }
-                    mvwprintw(lw,1,4,"LINES");
-                    mvwprintw(lw,2,6,"%08d",lcn);
-                    mvwprintw(lw,3,2,"===============");
-                    mvwprintw(lw,4,4, "ONELINER");
-                    mvwprintw(lw,5,6, "%08d",o);
-                    mvwprintw(lw,6,4, "DOUBLE");
-                    mvwprintw(lw,7,6, "%08d",d);
-                    mvwprintw(lw,8,4, "TRIPLE");
-                    mvwprintw(lw,9,6, "%08d",t);
-                    mvwprintw(lw,10,4, "TETTYRIS");
-                    mvwprintw(lw,11,6, "%08d",tt);
-                    mvwprintw(lw,12,4, "DROUGHT");
-                    mvwprintw(lw,13,6, "%08d",drt);
+                    mvwprintw(lw,1,4,"LEVEL");
+                    mvwprintw(lw,2,6,"%08d",lvl);
+                    mvwprintw(lw,3,4,"LINES");
+                    mvwprintw(lw,4,6,"%08d",lcn);
+                    mvwprintw(lw,5,2,"===============");
+                    mvwprintw(lw,6,4, "ONELINER");
+                    mvwprintw(lw,7,6, "%08d",o);
+                    mvwprintw(lw,8,4, "DOUBLE");
+                    mvwprintw(lw,9,6, "%08d",d);
+                    mvwprintw(lw,10,4, "TRIPLE");
+                    mvwprintw(lw,11,6, "%08d",t);
+                    mvwprintw(lw,12,4, "TETTYRIS");
+                    mvwprintw(lw,13,6, "%08d",tt);
+                    mvwprintw(lw,14,4, "DROUGHT");
+                    mvwprintw(lw,15,6, "%08d",drt);
 		
-                    for (int r=0;r<14;r++) {
+                    for (int r=0;r<16;r++) {
                         mvwprintw(lw,r,17,"!>");
                     }
-                    mvwprintw(lw,14,0, "<!===============!>");
-		    mvwprintw(ms,0,0,"SESSION %03d",sessions);
+                    mvwprintw(lw,16,0, "<!===============!>");
                     if (nxt != lnxt) {
 
                         
@@ -216,6 +220,17 @@ void gm() {
                     wnoutrefresh(al);
                     
                     
+                }
+                if (lvl > lalvl) {
+                    for (int i=0;i<2;i++){
+                        mvwprintw(ms,0,2,"!!!!!NEW  LVL!!!!!");
+                        wrefresh(ms);
+                        napms(200);
+                        //wclear(ms);
+                        wrefresh(ms);
+                        napms(200);
+                    }
+                    lalvl=lvl;
                 }
 
 
@@ -278,6 +293,7 @@ void gov() {
         sed = (sed * 5 + 1) & 0xffff;
         cur = sed % 7;
         cupc = tot[cur];
+        lalvl=1;
         clock_gettime(CLOCK_MONOTONIC, &bef);
         nodelay(gw,TRUE);
 
@@ -298,11 +314,11 @@ int main(int argc, char *argv[]) {
 
     calc();
     gw = newwin(gTall+2, gWide+2, vd-1, pd-1);
-    sw = newwin(gTall+5, 100, vd+6, pd+26);
-    pw = newwin(5, 20, vd+1, pd+26);
-    lw = newwin(20, 20, vd+1, pd-23);
+    sw = newwin(gTall+5, 100, vd+8, pd+26);
+    pw = newwin(7, 20, vd+1, pd+26);
+    lw = newwin(21, 20, vd+1, pd-23);
     al = newwin(20,20, vd,pd+1);
-    ms = newwin(1,12, vd-1,pd);
+    ms = newwin(1,20, vd-1,pd);
     nodelay(gw, TRUE);
 
 #ifdef _WIN32

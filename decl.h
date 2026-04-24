@@ -28,21 +28,21 @@
     #define gflsh() wrefresh(gw)
 extern int ren[20][10];
 extern struct timespec bef;
-static int _ngt ;
 struct sqrs {int r;int c;};
 struct pcs {struct sqrs lay[4];float pvtr;float pvtc;};
 extern struct pcs T;
 extern struct pcs S;
 extern struct pcs Z;
 extern int rst;
-extern int lns;
+extern int lalvl;
+extern unsigned int lvl;
 extern struct pcs J;
 extern struct pcs L;
 extern struct pcs O;
 extern struct pcs I;
 extern struct pcs tot[7];
 extern struct pcs cupc;
-extern int bfn;
+extern unsigned int gtmt[];
 extern int cur;
 extern int tp;
 extern int nxt;
@@ -56,7 +56,6 @@ extern int vd;
 extern int sessions;
 extern int pd;
 extern int whg;
-extern int rlk;
 extern int lhg;
 extern int lose;
 extern int cabinet[20][10];
@@ -67,6 +66,7 @@ extern int clr;
 extern int cnt;
 extern int paused;
 extern int iflsh;
+extern unsigned int gtm;
 extern int tflsh;
 extern int flshr[4];
 extern int flshc;
@@ -99,7 +99,7 @@ void lincl();
 int linsc(int cabinet[20][10], int op[4]);
 void flstat();
 void calc();
-
+void lv();
 
 
 #endif
