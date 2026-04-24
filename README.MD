@@ -1,6 +1,15 @@
 
 tettyris 1.0 (rev 1)
 
+INSTALL
+for linux
+* run make
+for windows
+* run winset.bat (CURRENTLY SUPPORTS WIN 10 AND UP!)
+REMOVE
+(linux only)
+* run make clean
+
 TODO 'N MORE
  	*remove pivot math and update with states instead because ewwwww
 	ISSUES RN
