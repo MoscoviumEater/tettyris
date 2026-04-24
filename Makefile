@@ -4,15 +4,21 @@ LDFLAGS = -lncurses -ltinfo -lm
 CFLAGS ?= -O1 -march=native
 PREFIX ?= /usr/local
 BINDIR ?= $(PREFIX)/bin
+DESTDIR ?=
+OBJS = $(SRCS:.c=.o)
 
 
-tettyris: $(SRCS)
-	$(CC) $(SRCS) -o tettyris $(LDFLAGS) $(CFLAGS)
+tettyris: $(OBJS)
+	$(CC) $(OBJS) -o tettyris $(LDFLAGS)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+$(OBJS): decl.h
 
 clean:
-	rm -f tettyris
+	rm -f $(OBJS) tettyris
 install:
-	install -d $(DESTDIR)$(DIR)
-	install -m755 tettyris $(DESTDIR)$(DIR)/tettyris
+	install -d $(DESTDIR)$(BINDIR)
+	install -m755 tettyris $(DESTDIR)$(BINDIR)/tettyris
 uninstall:
-	rm -f $(DIR)/tettyris
+	rm -f $(DESTDIR)$(BINDIR)/tettyris
