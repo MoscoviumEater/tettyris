@@ -28,7 +28,7 @@ void lincl() {
 
 
     for (int i = 0; i < clrd; i++) {
-        int r=clrr[i]
+        int r=clrr[i];
      /*       cnt=0;
 
         for (int c = 0; c < 10; c++) {
