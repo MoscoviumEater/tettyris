@@ -27,19 +27,9 @@ void calc() {
 void lincl() {
 
 
-    for (int i = 0; i < clrd; i++) {
-        int r=clrr[i];
-     /*       cnt=0;
+    for (int i = 0; i < flshc; i++) {
+        int r=flshr[i];
 
-        for (int c = 0; c < 10; c++) {
-
-            cnt += cabinet[r][c];
-
-        }
-        if (cnt==10) {
-            clr = 1;
-            clrr[clrd] = r;
-            clrd++;*/
 
 
             for (int sr = r; sr > 0; sr--) {
@@ -50,7 +40,7 @@ void lincl() {
                 }
             }
             for (int sc = 0; sc < 10; sc++) cabinet[0][sc] = 0;
-           // r--;
+           
        
 
     }
@@ -143,23 +133,13 @@ void flstat() {
                         wmove(gw,flshr[e]+1, 10 - (cl*2)+2); gmpt("!!");
 
 
-                    }
-                    
+                    }       
                     wnoutrefresh(gw);
-                    napms(60);
-                    
-
-
+                    napms(50);
                     doupdate();
-
-
                 }
-                
-               
                 wrefresh(gw);
             }
-
-
         }
         return;
     }
