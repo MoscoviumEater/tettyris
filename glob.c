@@ -66,7 +66,6 @@ struct pcs O = {{{0,4},{0,5},{1,4},{1,5}},0};
 struct pcs I = {{{0,3},{0,4},{0,5},{0,6}},0};
 struct pcs tot[7];
 struct pcs cupc;
-int pcd=0;
 int cur;
 int lalvl=1;
 int nxt;
