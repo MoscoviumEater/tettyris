@@ -211,7 +211,7 @@ void gm() {
                     
                     
                 }
-		mvwprintw(ms,0,0,"LOCAL DEBUG NO REDIST");
+		
                 if (lvl > lalvl) {
                     for (int i=0;i<2;i++){
                         mvwprintw(ms,0,2,"!!!!!NEW  LVL!!!!!");
