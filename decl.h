@@ -39,7 +39,6 @@ extern struct pcs L;
 extern struct pcs O;
 extern struct pcs I;
 extern struct pcs tot[7];
-extern int pcd;
 extern int rst;
 extern int lalvl;
 extern unsigned int lvl;
