@@ -59,18 +59,16 @@ void gm() {
 #endif
 #ifndef _WIN32
             lhg= wgetch(gw);
+            
+            
             if (lhg != ERR) {
 
+                
                 if (lhg == 32) {
                     paused = !paused;
                     flushinp();
                     continue;
-                }else if (lhg==113||lhg==81||lhg==27){
-
-                    clear();
-                    refresh();
-                    return;
-		            }else if (lhg==91&&paused !=1&&!iflsh){
+                }else if (lhg==91&&paused !=1&&!iflsh){
 
                     lhg= wgetch(gw);
                     if (lhg == 66 ) pcdrp(cabinet);
@@ -80,7 +78,14 @@ void gm() {
                     
                 }
                 
-                if(lhg == 115 || lhg == 83){
+                
+                if (lhg==113||lhg==81){
+                    
+                         clear();
+                         refresh();
+                         return;
+		            }
+	              if(lhg == 115 || lhg == 83){
                         for (int i = 0; i<20; i++){
                             if(chkloc())break;
                             pcdrp(cabinet);
