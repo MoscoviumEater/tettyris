@@ -1,5 +1,5 @@
 
-tettyris 1.0 (rev 1)
+tettyris 1.1 (rev 0)
 
 INSTALL
 for linux
