@@ -32,11 +32,12 @@ void pcplc(struct pcs cupc, int ren[20][10]) {
 
 
 
-
-    for (int r = 0; r < 4; r++) {
-        int pr = cupc.lay[r].r;
-        int pc = cupc.lay[r].c;
-        ren[pr][pc] = 1;
+    if (!iflsh){
+        for (int r = 0; r < 4; r++) {
+            int pr = cupc.lay[r].r;
+            int pc = cupc.lay[r].c;
+            ren[pr][pc] = 1;
+        }
     }
 }
 
@@ -44,12 +45,6 @@ void pcmov(int di,int cabinet[20][10]) {
     int prohmov = 0;
 
     for (int i = 0; i < 4; i++) {
-//        cupc.lay[i];
-        /*if (cupc.lay[i].c - 1 < 0 || cabinet[cupc.lay[i].r][cupc.lay[i].c + di] == 1) {
-            prohibit = 1;
-        } else {
-            cupc.lay[i].c--;
-        }*/
         if (cupc.lay[i].c + di < 0 || cupc.lay[i].c + di >= 10 || cabinet[cupc.lay[i].r][cupc.lay[i].c + di] == 1) {
             prohmov = 1;
         }
@@ -58,7 +53,6 @@ void pcmov(int di,int cabinet[20][10]) {
         for (int i = 0; i < 4; i++) {
             cupc.lay[i].c += di;
         }
-        cupc.pvtc += di;
     }
 }
 void pcdrp(int cabinet[20][10]) {
@@ -69,7 +63,7 @@ void pcdrp(int cabinet[20][10]) {
             cupc.lay[i].r+=1;
 
         }
-        cupc.pvtr += 1;
+    
     }
 }
 
@@ -86,39 +80,28 @@ void pcrot(int cabinet[20][10]) {
         case 6: kk[0]=0;kk[1]=1;kk[2]=-1;kk[3]=2;kk[4]=-2;nk=5;break;
         default: kk[0]=0;nk=1;break;
     }
-    for (int k = 0; k < nk; k++) {
-        int dc = kk[k];
-        int dr = 0;
+        for (int k = 0; k < nk; k++) {
+        int nrot = (cupc.rot+1)%4;
+        int kc = kk[k];
+        int dr = cupc.lay[0].r-stt[cur][cupc.rot][0].r;
+        int dc = cupc.lay[0].c -stt[cur][cupc.rot][0].c;
         int prohrot = 0;
         for (int i = 0; i < 4; i++) {
-            float pvtr = cupc.pvtr;
-            float pvtc = cupc.pvtc + (cur==6 ? 0.5f : 0.0f);
-            float nr = pvtr + (cupc.lay[i].c - pvtc);
-            float nc = pvtc - (cupc.lay[i].r - pvtr);
-           if ((int)roundf(nr)+dr < 0 || (int)roundf(nr)+dr >= 20 || (int)roundf(nc)+dc < 0 || (int)roundf(nc)+dc >= 10 || cabinet[(int)roundf(nr)+dr][(int)roundf(nc)+dc] == 1) {
-                prohrot = 1;
-            }
+            int nr=stt[cur][nrot][i].r + dr;
+            int nc=stt[cur][nrot][i].c + dc +kc ;
+            if (nr < 0 || nr >= 20 || nc < 0 || nc >= 10 || cabinet[nr][nc] == 1)prohrot=1;
         }
         if (!prohrot) {
             int nR[4], nC[4];
             for (int i = 0; i < 4; i++) {
-                float pvtr = cupc.pvtr;
-                float pvtc = cupc.pvtc;
-                float nr = pvtr + (cupc.lay[i].c - pvtc);
-                float nc = pvtc - (cupc.lay[i].r - pvtr);
-                nR[i] = (int)roundf(nr);
-                nC[i] = (int)roundf(nc);
-                nR[i] = (int)roundf(nr) + dr;
-                nC[i] = (int)roundf(nc) + dc;
+                nR[i]=stt[cur][nrot][i].r + dr;
+                nC[i]=stt[cur][nrot][i].c + dc + kc;
             }
             for (int i = 0; i < 4; i++) {
                 cupc.lay[i].r = nR[i];
                 cupc.lay[i].c = nC[i];
             }
-            cupc.pvtr += dr;
-            cupc.pvtc += dc;
-            if (cur==6) cupc.pvtc = roundf(cupc.pvtc);
-
+            cupc.rot=nrot;
             return;
         }
 

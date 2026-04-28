@@ -52,7 +52,7 @@ int linsc(int cabinet[20][10], int op[4]) {
     int fnd = 0;
 
     for (int r = 0; r < 20; r++) {
-        int cnt = 0;
+	cnt =0;
         for (int c = 0; c < 10; c++) {
             cnt += cabinet[r][c];
         }
@@ -77,14 +77,12 @@ void tick(int ren[20][10], int cabinet[20][10]) {
             cupc.lay[i].r+=1;
 
         }
-        cupc.pvtr += 1;
     } else {
         for (int i = 0; i < 4; i++) {
             cabinet[cupc.lay[i].r][cupc.lay[i].c] = 1;
 
 
         }
-
 
 
 
@@ -135,7 +133,7 @@ void flstat() {
 
                     }       
                     wnoutrefresh(gw);
-                    napms(50);
+                    napms(20);
                     doupdate();
                 }
                 wrefresh(gw);

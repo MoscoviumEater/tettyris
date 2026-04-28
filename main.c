@@ -13,11 +13,10 @@ void gm() {
 
         curs_set(0);
 
-        cur=6;
+        
         lvl=(lcn/10);
         lv();
-        flstat();
-        
+                  
         for (int i = 0; i < 10; i++) {
             napms(5);
 
@@ -66,7 +65,12 @@ void gm() {
                     paused = !paused;
                     flushinp();
                     continue;
-                }else if (lhg==91&&paused !=1&&!iflsh){
+                }else if (lhg==113||lhg==81){
+
+                    clear();
+                    refresh();
+                    return;
+		            }else if (lhg==91&&paused !=1&&!iflsh){
 
                     lhg= wgetch(gw);
                     if (lhg == 66 ) pcdrp(cabinet);
@@ -91,22 +95,23 @@ void gm() {
             clock_gettime(CLOCK_MONOTONIC, &rn);
             long tm = (rn.tv_sec - bef.tv_sec) * 1000 +
                       (rn.tv_nsec - bef.tv_nsec) / 1000000;
-            if (paused != 1) {
-                if (tm >= gtm && !iflsh) {
-
-                    tick(ren, cabinet);
-                    bef = rn;
-                }
-
-            }
-
             memset(ren, 0, sizeof(ren));
 
-            for (int r=0;r<20;r++)
-                for (int c=0;c<10;c++) ren[r][c] = cabinet[r][c];
-            if (!iflsh) {
+            for (int r=0;r<20;r++){
+                for (int c=0;c<10;c++) ren[r][c] = cabinet[r][c];}
+                flstat();
+                
                 pcplc(cupc,ren);
-            }
+                if (paused != 1) {
+                    if (tm >= gtm && !iflsh) {
+
+                        tick(ren, cabinet);
+                        bef = rn;
+                    }
+
+                }
+
+            
 
 
             
@@ -206,6 +211,7 @@ void gm() {
                     
                     
                 }
+		mvwprintw(ms,0,0,"LOCAL DEBUG NO REDIST");
                 if (lvl > lalvl) {
                     for (int i=0;i<2;i++){
                         mvwprintw(ms,0,2,"!!!!!NEW  LVL!!!!!");
@@ -295,7 +301,7 @@ int main(int argc, char *argv[]) {
     rst=0;
     clock_gettime(CLOCK_MONOTONIC, &bef);
 
-    initscr();cbreak();noecho();
+    initscr();raw();noecho();
 
     calc();
     gw = newwin(gTall+2, gWide+2, vd-1, pd-1);
@@ -303,7 +309,7 @@ int main(int argc, char *argv[]) {
     pw = newwin(7, 20, vd+1, pd+26);
     lw = newwin(21, 20, vd+1, pd-23);
     al = newwin(20,20, vd,pd+1);
-    ms = newwin(1,20, vd-1,pd);
+    ms = newwin(1,21, vd-1,pd);
     nodelay(gw, TRUE);
 
 #ifdef _WIN32
@@ -352,7 +358,7 @@ int main(int argc, char *argv[]) {
 
 
 
-    nocbreak();
+    noraw();
     echo();
     flushinp();
     curs_set(1);

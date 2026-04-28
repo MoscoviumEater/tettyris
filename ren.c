@@ -169,19 +169,13 @@ void gridren(int ren[20][10], int clrr[], int clrd, int clr) {
 
     }
     gmpt("!>");
-    gflsh(); p=0;
-#ifndef _WIN32
-    //  gmpt("\n");
-#endif
+    gflsh();
     wmove(gw,22, 0);
     gmpt("  ");
     for (int c = 0; c < 10; c++) {
 
         gmpt("\\/");
     }
-#ifndef _WIN32
-    //gmpt("\n");
-#endif
     gflsh(); p=0;
 
 }

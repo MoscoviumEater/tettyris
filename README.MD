@@ -4,14 +4,18 @@ tettyris 1.0 (rev 1)
 INSTALL
 for linux
 * run make
+* then make install
+* you might wanna run whats above me as root though
 for windows
 * run winset.bat (CURRENTLY SUPPORTS WIN 10 AND UP!)
 REMOVE
 (linux only)
 * run make clean
+* OR make uninstall
 
-TODO
- 	*remove pivot math and update with states instead because ewwwww
+	TODO
+
+	* looks like it's a long day huh? nothing here!
 
 	ISSUES RN
 
@@ -19,12 +23,12 @@ TODO
 
 	stuff i did this revision
 
-	* implemented lvl logic completely
-	* moved session from ms window to sw
+	* replaced float pivot math with states
+	* fixed pcplc running while flash is in progress
 
 	stuff i did last revision
 
- 	* made it fetch pdcursesmod and compiler from net instead of bloating my repo with deps
- 	* starting to implement lvl logic bones
+ 	* implemented lvl logic completely
+ 	* moved session from ms window to sw
 
 
