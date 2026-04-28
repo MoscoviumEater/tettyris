@@ -65,7 +65,7 @@ void gm() {
                     paused = !paused;
                     flushinp();
                     continue;
-                }else if (lhg==113||lhg==81){
+                }else if (lhg==113||lhg==81||lhg==27){
 
                     clear();
                     refresh();
